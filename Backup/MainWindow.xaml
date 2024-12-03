@@ -1,0 +1,53 @@
+﻿<Window x:Class="Backup.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Save File Backup" Height="500" Width="600">
+    <Grid Margin="10">
+        <!-- Define grid rows -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <!-- Save Path -->
+            <RowDefinition Height="Auto" />
+            <!-- Backup Path -->
+            <RowDefinition Height="Auto" />
+            <!-- Map Name -->
+            <RowDefinition Height="Auto" />
+            <!-- Buttons -->
+            <RowDefinition Height="Auto" />
+            <!-- GitHub Token -->
+            <RowDefinition Height="*" />
+            <!-- Log Box (dynamic height) -->
+        </Grid.RowDefinitions>
+
+        <!-- Save Path -->
+        <Label Content="Save Path:" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <TextBlock x:Name="SavePathLabel" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="100,0,0,0" Height="25" Text="Not Selected" Background="#FFF0F0F0" />
+        <Button Content="Browse" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Height="25" Margin="0,0,0,0" Click="BrowseSavePath_Click" />
+
+        <!-- Backup Path -->
+        <Label Content="Backup Path:" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5,0,0" />
+        <TextBlock x:Name="BackupPathLabel" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="100,5,0,0" Height="25" Text="Not Selected" Background="#FFF0F0F0" />
+        <Button Content="Browse" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Height="25" Margin="0,5,0,0" Click="BrowseBackupPath_Click" />
+
+        <!-- Map Name -->
+        <Label Content="Map Name:" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5,0,0" />
+        <TextBox x:Name="MapNameTextBox" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="100,5,0,0" Height="25" />
+
+        <!-- Start/Stop Button and Auto-Start Checkbox -->
+        <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+            <Button x:Name="LoadBackupButton" Content="Load Backup" Width="120" Height="35" Click="LoadBackupButton_Click" Margin="0,0,10,0"/>
+            <Button x:Name="StartStopButton" Content="Start Backup" Width="120" Height="35" Click="StartStopButton_Click" />
+            <CheckBox x:Name="AutoStartCheckBox" Content="Start Monitoring on Launch"
+                      VerticalAlignment="Center" Margin="10,0,0,0"
+                      Checked="AutoStartCheckBox_Checked" Unchecked="AutoStartCheckBox_Checked" />
+        </StackPanel>
+
+        <!-- GitHub Token -->
+        <Label Content="GitHub Token:" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0" />
+        <PasswordBox x:Name="GitHubTokenBox" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="100,10,0,0" Height="25" />
+
+        <!-- Log Box -->
+        <Label Content="Log:" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,5" />
+        <ListBox x:Name="LogBox" Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,10,0,0" />
+    </Grid>
+</Window>
