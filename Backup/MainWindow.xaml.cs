@@ -202,7 +202,8 @@ namespace Backup
             // Automatically set default backup path if not provided
             if (string.IsNullOrEmpty(backupPath) && !string.IsNullOrEmpty(mapName))
             {
-                backupPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"{mapName}-backup");
+                string exePath = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
+                backupPath = Path.Combine(exePath ?? AppDomain.CurrentDomain.BaseDirectory, $"{mapName}-backup");
 
                 // Create the folder if it doesn't exist
                 if (!Directory.Exists(backupPath))

@@ -25,7 +25,7 @@ namespace Backup
             this.sourceFolderPath = sourceFolderPath;
             this.gitHubToken = gitHubToken;
             this.repoName = $"{mapName}-repo";
-            this.localRepoPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, repoName);
+            this.localRepoPath = Path.Combine(Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName), repoName);
 
             client = new Octokit.GitHubClient(new ProductHeaderValue("BackupApp"))
             {

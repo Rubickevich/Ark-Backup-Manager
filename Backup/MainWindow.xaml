@@ -21,17 +21,17 @@
 
         <!-- Save Path -->
         <Label Content="Save Path:" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" />
-        <TextBlock x:Name="SavePathLabel" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="100,0,0,0" Height="25" Text="Not Selected" Background="#FFF0F0F0" />
+        <TextBlock x:Name="SavePathLabel" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="100,0,90,0" Height="25" Text="Not Selected" Background="#FFF0F0F0" />
         <Button Content="Browse" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Height="25" Margin="0,0,0,0" Click="BrowseSavePath_Click" />
 
         <!-- Backup Path -->
         <Label Content="Backup Path:" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5,0,0" />
-        <TextBlock x:Name="BackupPathLabel" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="100,5,0,0" Height="25" Text="Not Selected" Background="#FFF0F0F0" />
+        <TextBlock x:Name="BackupPathLabel" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="100,5,90,0" Height="25" Text="Not Selected" Background="#FFF0F0F0" />
         <Button Content="Browse" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Height="25" Margin="0,5,0,0" Click="BrowseBackupPath_Click" />
 
         <!-- Map Name -->
         <Label Content="Map Name:" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5,0,0" />
-        <TextBox x:Name="MapNameTextBox" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="100,5,0,0" Height="25" />
+        <TextBox x:Name="MapNameTextBox" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="100,5,90,0" Height="25" />
 
         <!-- Start/Stop Button and Auto-Start Checkbox -->
         <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
