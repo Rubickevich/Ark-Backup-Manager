@@ -17,6 +17,7 @@ namespace Backup
         private string userName;
         private readonly Octokit.GitHubClient client;
         private readonly string repoName;
+        private readonly string mapName;
 
         private const long EmergencyThresholdBytes = 900L * 1024 * 1024; // 900 MB
 
@@ -25,6 +26,7 @@ namespace Backup
             this.sourceFolderPath = sourceFolderPath;
             this.gitHubToken = gitHubToken;
             this.repoName = $"{mapName}-repo";
+            this.mapName = mapName;
             this.localRepoPath = Path.Combine(Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName), repoName);
 
             client = new Octokit.GitHubClient(new ProductHeaderValue("BackupApp"))
@@ -87,11 +89,25 @@ namespace Backup
             {
                 Logger.Instance.Log($"Current repo Size: {repoSize / (1024 * 1024)} / {EmergencyThresholdBytes / (1024 * 1024)} MB.", LogType.Success);
             }
-
             // Get all relevant files (skipping .bak extensions)
             var importantFiles = Directory.GetFiles(sourceFolderPath)
-                                          .Where(file => !file.EndsWith(".bak", StringComparison.OrdinalIgnoreCase) &&
-                                                         !file.EndsWith(".profilebak", StringComparison.OrdinalIgnoreCase))
+                                          .Where(file =>
+                                          {
+                                              string extension = Path.GetExtension(file).ToLowerInvariant();
+                                              string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(file);
+
+                                              // Include files that are .ark or .arktribe
+                                              bool isRelevantFile = extension == ".ark" || extension == ".arktribe" || extension == ".arkprofile" || extension == ".ptn";
+
+                                              // For .ark files, ensure the name matches the mapName exactly
+                                              bool isMatchingMapName = extension != ".ark" || fileNameWithoutExtension == mapName;
+
+                                              // Exclude backup files (e.g., .bak or .profilebak)
+                                              bool isNotBackup = !file.EndsWith(".bak", StringComparison.OrdinalIgnoreCase) &&
+                                                                 !file.EndsWith(".profilebak", StringComparison.OrdinalIgnoreCase);
+
+                                              return isRelevantFile && isMatchingMapName && isNotBackup;
+                                          })
                                           .ToList();
             if (!importantFiles.Any())
             {

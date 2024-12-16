@@ -22,7 +22,6 @@ namespace Backup
         public MainWindow()
         {
             InitializeComponent();
-            // Initialize Logger
             Logger.Instance.Initialize(LogBox);
 
             try
@@ -46,7 +45,7 @@ namespace Backup
             catch (Exception ex)
             {
                 Logger.Instance.Log($"Initialization failed: {ex.Message}", LogType.Error);
-                MessageBox.Show("An unexpected error occurred during startup. Please check the logs.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("An unexpected error occurred during startup.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void ApplyConfig()
@@ -80,7 +79,7 @@ namespace Backup
             userConfig.MapName = mapName;
             userConfig.AutoStart = AutoStartCheckBox.IsChecked ?? false;
 
-            // Save GitHub token if it's not empty
+            // Only save GitHub token if it's not empty
             if (!string.IsNullOrEmpty(GitHubTokenBox.Password))
             {
                 userConfig.GitHubToken = GitHubTokenBox.Password;
